@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_flutter_app/shared/theme.dart';
 import 'package:new_flutter_app/ui/widgets/custom_button.dart';
+import 'package:new_flutter_app/ui/widgets/custom_text_field.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -19,66 +20,6 @@ class SignUp extends StatelessWidget {
     }
 
     Widget inputSection() {
-      Widget fullNameInput() {
-        return Container(
-          margin: const EdgeInsets.only(bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Full Name",
-                style:
-                    blackTextStyle.copyWith(fontSize: 14, fontWeight: regular),
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                cursorColor: textcolor,
-                decoration: InputDecoration(
-                  hintText: 'Your full name',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius),
-                      borderSide: BorderSide(color: primarycolor)),
-                ),
-              ),
-            ],
-          ),
-        );
-      }
-
-      Widget emailInput() {
-        return Container(
-          margin: const EdgeInsets.only(bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Email Address",
-                style:
-                    blackTextStyle.copyWith(fontSize: 14, fontWeight: regular),
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                cursorColor: textcolor,
-                decoration: InputDecoration(
-                  hintText: 'Your email address',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius),
-                      borderSide: BorderSide(color: primarycolor)),
-                ),
-              ),
-            ],
-          ),
-        );
-      }
-
       Widget password() {
         return Container(
           margin: const EdgeInsets.only(bottom: 20),
@@ -110,36 +51,6 @@ class SignUp extends StatelessWidget {
         );
       }
 
-      Widget hobbyInput() {
-        return Container(
-          margin: const EdgeInsets.only(bottom: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Hobby",
-                style:
-                    blackTextStyle.copyWith(fontSize: 14, fontWeight: regular),
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                cursorColor: textcolor,
-                decoration: InputDecoration(
-                  hintText: 'Your hobby',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius),
-                      borderSide: BorderSide(color: primarycolor)),
-                ),
-              ),
-            ],
-          ),
-        );
-      }
-
       Widget button() {
         return CustomButton(
             onPressed: () {
@@ -156,10 +67,15 @@ class SignUp extends StatelessWidget {
             borderRadius: BorderRadius.circular(defaultRadius)),
         child: Column(
           children: [
-            fullNameInput(),
-            emailInput(),
-            password(),
-            hobbyInput(),
+            CustomTextField(
+              title: "Full name",
+            ),
+            CustomTextField(title: "Email Address"),
+            CustomTextField(
+              title: "Password",
+              isObscure: true,
+            ),
+            CustomTextField(title: "Hobby"),
             button(),
           ],
         ),

@@ -15,6 +15,7 @@ Color inactivecolor = const Color(0xFFDBD7EC);
 Color transparentColor = Colors.transparent;
 Color unavailableColor = const Color(0xFFEBECF1);
 Color availableColor = const Color(0xFFE0D9FF);
+Color yellowColor = const Color(0xffFFA235);
 
 TextStyle blackTextStyle = GoogleFonts.poppins(color: textcolor);
 TextStyle whiteTextStyle = GoogleFonts.poppins(color: whitecolor);

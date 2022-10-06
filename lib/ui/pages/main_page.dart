@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_flutter_app/shared/theme.dart';
+import 'package:new_flutter_app/ui/pages/home_page.dart';
 import 'package:new_flutter_app/ui/widgets/navigation_bar.dart';
 
 class MainPage extends StatelessWidget {
@@ -7,9 +8,13 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget buildContent() {
+      return HomePage();
+    }
+
     return Scaffold(
       backgroundColor: backgroundcolor,
-      body: Text("mainpage"),
+      body: buildContent(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
         height: 60,
