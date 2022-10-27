@@ -10,9 +10,9 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Spacer(),
+        const Spacer(),
         Image.asset(imageUrl, width: 24),
-        Spacer(),
+        const Spacer(),
         Container(
           width: 30,
           height: 2,

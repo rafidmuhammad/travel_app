@@ -67,15 +67,15 @@ class SignUp extends StatelessWidget {
             borderRadius: BorderRadius.circular(defaultRadius)),
         child: Column(
           children: [
-            CustomTextField(
+            const CustomTextField(
               title: "Full name",
             ),
-            CustomTextField(title: "Email Address"),
-            CustomTextField(
+            const CustomTextField(title: "Email Address"),
+            const CustomTextField(
               title: "Password",
               isObscure: true,
             ),
-            CustomTextField(title: "Hobby"),
+            const CustomTextField(title: "Hobby"),
             button(),
           ],
         ),

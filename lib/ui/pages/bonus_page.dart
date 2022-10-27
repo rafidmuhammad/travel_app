@@ -60,7 +60,7 @@ class BonusPage extends StatelessWidget {
                 )
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Text(
               "Balance",
               style: whiteTextStyle.copyWith(fontWeight: light),
@@ -97,7 +97,7 @@ class BonusPage extends StatelessWidget {
 
     Widget startButton() {
       return CustomButton(
-          margin: EdgeInsets.only(top: 50),
+          margin: const EdgeInsets.only(top: 50),
           width: 220,
           onPressed: () {
             Navigator.pushNamed(context, '/main-page');
