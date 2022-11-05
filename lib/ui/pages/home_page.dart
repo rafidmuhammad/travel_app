@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:new_flutter_app/shared/theme.dart';
 import 'package:new_flutter_app/ui/widgets/destination_card.dart';
 import 'package:new_flutter_app/ui/widgets/destination_tile.dart';
@@ -137,14 +136,12 @@ class HomePage extends StatelessWidget {
       );
     }
 
-    return Container(
-      child: ListView(
-        children: [
-          header(),
-          popularDestination(),
-          newDestination(),
-        ],
-      ),
+    return ListView(
+      children: [
+        header(),
+        popularDestination(),
+        newDestination(),
+      ],
     );
   }
 }

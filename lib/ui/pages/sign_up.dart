@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:new_flutter_app/shared/theme.dart';
 import 'package:new_flutter_app/ui/widgets/custom_button.dart';
 import 'package:new_flutter_app/ui/widgets/custom_text_field.dart';
+import 'package:new_flutter_app/ui/widgets/tacbutton.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -82,21 +83,6 @@ class SignUp extends StatelessWidget {
       );
     }
 
-    Widget tacButton() {
-      return Container(
-        margin: const EdgeInsets.only(top: 30, bottom: 73),
-        child: TextButton(
-            onPressed: () {},
-            child: Text(
-              "Terms and Condition",
-              style: greyTextStyle.copyWith(
-                  fontSize: 16,
-                  fontWeight: light,
-                  decoration: TextDecoration.underline),
-            )),
-      );
-    }
-
     return Scaffold(
         backgroundColor: backgroundcolor,
         body: SafeArea(
@@ -106,7 +92,7 @@ class SignUp extends StatelessWidget {
               children: [
                 title(),
                 inputSection(),
-                tacButton(),
+                TacButton(margin: EdgeInsets.only(top: 50, bottom: 73)),
               ],
             ),
           ),

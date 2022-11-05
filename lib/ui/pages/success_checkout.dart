@@ -33,7 +33,10 @@ class SuccessCheckout extends StatelessWidget {
             ),
             CustomButton(
               margin: const EdgeInsets.only(top: 50),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/main-page', (route) => false);
+              },
               title: "My Bookings",
               width: 220,
             )
