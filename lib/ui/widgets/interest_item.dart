@@ -11,10 +11,10 @@ class InterestItem extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(right: 6),
+            margin: const EdgeInsets.only(right: 6),
             width: 16,
             height: 16,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/icon_checklist.png"),
               ),

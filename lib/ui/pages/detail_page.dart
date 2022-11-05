@@ -172,7 +172,7 @@ class DetailPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 31,
             ),
             Row(
@@ -187,7 +187,7 @@ class DetailPage extends StatelessWidget {
                         style: blackTextStyle.copyWith(
                             fontSize: 18, fontWeight: medium),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
@@ -202,14 +202,14 @@ class DetailPage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ChooseSeatPage(),
+                            builder: (context) => const ChooseSeatPage(),
                           ));
                     },
                     title: "Book Now",
                     width: 170),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 31,
             ),
           ],

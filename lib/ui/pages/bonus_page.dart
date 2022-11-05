@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:new_flutter_app/shared/theme.dart';
 import 'package:new_flutter_app/ui/widgets/custom_button.dart';

@@ -21,37 +21,6 @@ class SignUp extends StatelessWidget {
     }
 
     Widget inputSection() {
-      Widget password() {
-        return Container(
-          margin: const EdgeInsets.only(bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Password",
-                style:
-                    blackTextStyle.copyWith(fontSize: 14, fontWeight: regular),
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                obscureText: true,
-                cursorColor: textcolor,
-                decoration: InputDecoration(
-                  hintText: 'Your password',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius),
-                      borderSide: BorderSide(color: primarycolor)),
-                ),
-              ),
-            ],
-          ),
-        );
-      }
-
       Widget button() {
         return CustomButton(
             onPressed: () {
@@ -92,7 +61,7 @@ class SignUp extends StatelessWidget {
               children: [
                 title(),
                 inputSection(),
-                TacButton(margin: EdgeInsets.only(top: 50, bottom: 73)),
+                const TacButton(margin: EdgeInsets.only(top: 50, bottom: 73)),
               ],
             ),
           ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:new_flutter_app/shared/theme.dart';
 
 class PhotoItem extends StatelessWidget {
   final String imageUrl;
@@ -10,7 +9,7 @@ class PhotoItem extends StatelessWidget {
     return Container(
       width: 70,
       height: 70,
-      margin: EdgeInsets.only(right: 16),
+      margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
         image: DecorationImage(

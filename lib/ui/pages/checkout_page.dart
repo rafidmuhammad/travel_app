@@ -16,7 +16,7 @@ class CheckoutPage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: 10),
+              margin: const EdgeInsets.only(bottom: 10),
               width: double.infinity - (2 * defaultMargin * 1.7),
               height: 65,
               decoration: const BoxDecoration(
@@ -66,8 +66,8 @@ class CheckoutPage extends StatelessWidget {
     Widget bookingDetails() {
       return Container(
         width: MediaQuery.of(context).size.width - (2 * defaultMargin),
-        margin: EdgeInsets.only(top: 30),
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        margin: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         decoration: BoxDecoration(
             color: whitecolor,
             borderRadius: BorderRadius.circular(defaultRadius)),
@@ -81,11 +81,11 @@ class CheckoutPage extends StatelessWidget {
                   height: 70,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(defaultRadius),
-                      image: DecorationImage(
+                      image: const DecorationImage(
                           fit: BoxFit.cover,
                           image: AssetImage("assets/image_dest_1.png"))),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 16,
                 ),
                 Expanded(
@@ -123,7 +123,7 @@ class CheckoutPage extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
@@ -157,8 +157,8 @@ class CheckoutPage extends StatelessWidget {
     Widget paymentdetails() {
       return Container(
         width: double.infinity,
-        margin: EdgeInsets.only(top: 30),
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+        margin: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
         decoration: BoxDecoration(color: whitecolor),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,7 +168,7 @@ class CheckoutPage extends StatelessWidget {
               style:
                   blackTextStyle.copyWith(fontWeight: semibold, fontSize: 16),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Row(
@@ -176,18 +176,18 @@ class CheckoutPage extends StatelessWidget {
                 Container(
                   width: 100,
                   height: 70,
-                  margin: EdgeInsets.only(right: 16),
-                  decoration: BoxDecoration(
+                  margin: const EdgeInsets.only(right: 16),
+                  decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage("assets/image_card.png"))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(right: 6),
+                        margin: const EdgeInsets.only(right: 6),
                         width: 24,
                         height: 24,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
                               "assets/icon_plane.png",
@@ -211,7 +211,7 @@ class CheckoutPage extends StatelessWidget {
                       style: blackTextStyle.copyWith(
                           fontWeight: medium, fontSize: 18),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Text(
@@ -233,11 +233,11 @@ class CheckoutPage extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SuccessCheckout(),
+                builder: (context) => const SuccessCheckout(),
               ));
         },
         title: "Pay Now",
-        margin: EdgeInsets.symmetric(vertical: 30),
+        margin: const EdgeInsets.symmetric(vertical: 30),
       );
     }
 
@@ -251,7 +251,7 @@ class CheckoutPage extends StatelessWidget {
             bookingDetails(),
             paymentdetails(),
             paynowButton(),
-            TacButton(margin: EdgeInsets.only(bottom: 30)),
+            const TacButton(margin: EdgeInsets.only(bottom: 30)),
           ],
         ),
       ),

@@ -42,7 +42,7 @@ class SeatItem extends StatelessWidget {
           style: whiteTextStyle.copyWith(fontWeight: semibold),
         ));
       } else {
-        return SizedBox();
+        return const SizedBox();
       }
     }
 

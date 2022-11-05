@@ -40,7 +40,7 @@ class GetStarted extends StatelessWidget {
                   height: 50,
                 ),
                 CustomButton(
-                    margin: EdgeInsets.only(top: 50, bottom: 80),
+                    margin: const EdgeInsets.only(top: 50, bottom: 80),
                     title: "Get Started",
                     onPressed: () {
                       Navigator.pushNamed(
