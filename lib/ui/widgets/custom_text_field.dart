@@ -4,9 +4,13 @@ import 'package:new_flutter_app/shared/theme.dart';
 class CustomTextField extends StatelessWidget {
   final String title;
   final bool isObscure;
+  final TextEditingController controller;
 
   const CustomTextField(
-      {super.key, required this.title, this.isObscure = false});
+      {super.key,
+      required this.title,
+      this.isObscure = false,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,7 @@ class CustomTextField extends StatelessWidget {
             height: 6,
           ),
           TextFormField(
+            controller: controller,
             obscureText: isObscure,
             cursorColor: textcolor,
             decoration: InputDecoration(

@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:new_flutter_app/cubit/auth_cubit.dart';
 import 'package:new_flutter_app/shared/theme.dart';
 import 'package:new_flutter_app/ui/widgets/custom_button.dart';
 import 'package:new_flutter_app/ui/widgets/custom_text_field.dart';
 import 'package:new_flutter_app/ui/widgets/tacbutton.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+  SignUp({super.key});
+
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
+  TextEditingController hobbyController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +29,40 @@ class SignUp extends StatelessWidget {
 
     Widget inputSection() {
       Widget button() {
-        return CustomButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/bonus');
-            },
-            title: "Get Started");
+        return BlocConsumer<AuthCubit, AuthState>(
+          listener: (context, state) {
+            // TODO: implement listener
+            if (state is AuthSuccess) {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                '/bonus',
+                (route) => false,
+              );
+            } else if (state is AuthFailed) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.error),
+                backgroundColor: redcolor,
+              ));
+            }
+          },
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            return CustomButton(
+                onPressed: () {
+                  context.read<AuthCubit>().signUp(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      name: nameController.text,
+                      hobby: hobbyController.text);
+                },
+                title: "Get Started");
+          },
+        );
       }
 
       return Container(
@@ -37,15 +73,18 @@ class SignUp extends StatelessWidget {
             borderRadius: BorderRadius.circular(defaultRadius)),
         child: Column(
           children: [
-            const CustomTextField(
+            CustomTextField(
               title: "Full name",
+              controller: nameController,
             ),
-            const CustomTextField(title: "Email Address"),
-            const CustomTextField(
+            CustomTextField(
+                title: "Email Address", controller: emailController),
+            CustomTextField(
               title: "Password",
               isObscure: true,
+              controller: passwordController,
             ),
-            const CustomTextField(title: "Hobby"),
+            CustomTextField(title: "Hobby", controller: hobbyController),
             button(),
           ],
         ),

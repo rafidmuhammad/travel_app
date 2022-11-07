@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:new_flutter_app/cubit/auth_cubit.dart';
 import 'package:new_flutter_app/cubit/page_cubit.dart';
 import 'package:new_flutter_app/observer.dart';
 import 'package:new_flutter_app/ui/pages/bonus_page.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => PageCubit(),
+        ),
+        BlocProvider(
+          create: (context) => AuthCubit(),
         )
       ],
       child: MaterialApp(
@@ -37,7 +41,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const SplashPage(),
           '/get-started': (context) => const GetStarted(),
-          '/sign-up': (context) => const SignUp(),
+          '/sign-up': (context) => SignUp(),
           '/bonus': (context) => const BonusPage(),
           '/main-page': (context) => const MainPage(),
         },
