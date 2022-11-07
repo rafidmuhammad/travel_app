@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "580891158800",
+    "project_id": "airplane-dfb17",
+    "storage_bucket": "airplane-dfb17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580891158800:android:d9c53224ae9333d1139d95",
+        "android_client_info": {
+          "package_name": "com.example.new_flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580891158800-cdq7lrl7d957d8ums9pn8v7m7nrotfjn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc1RV6FBlhH59JfdUfbmSaiN6iDaRGVuQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580891158800-cdq7lrl7d957d8ums9pn8v7m7nrotfjn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580891158800:android:685e990be8bc792f139d95",
+        "android_client_info": {
+          "package_name": "com.rafidm.travel_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580891158800-cdq7lrl7d957d8ums9pn8v7m7nrotfjn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc1RV6FBlhH59JfdUfbmSaiN6iDaRGVuQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580891158800-cdq7lrl7d957d8ums9pn8v7m7nrotfjn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
