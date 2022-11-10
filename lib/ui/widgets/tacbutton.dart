@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:new_flutter_app/shared/theme.dart';
 
-class TacButton extends StatelessWidget {
+class CustomTextButton extends StatelessWidget {
+  final String name;
   final EdgeInsets margin;
-  const TacButton({super.key, this.margin = EdgeInsets.zero});
+  const CustomTextButton(
+      {super.key,
+      this.margin = EdgeInsets.zero,
+      required this.onPressed,
+      required this.name});
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
       child: TextButton(
-          onPressed: () {},
+          onPressed: onPressed,
           child: Text(
-            "Terms and Condition",
+            name,
             style: greyTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: light,

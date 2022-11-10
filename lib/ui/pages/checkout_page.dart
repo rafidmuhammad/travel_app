@@ -251,7 +251,11 @@ class CheckoutPage extends StatelessWidget {
             bookingDetails(),
             paymentdetails(),
             paynowButton(),
-            const TacButton(margin: EdgeInsets.only(bottom: 30)),
+            CustomTextButton(
+              margin: const EdgeInsets.only(bottom: 30),
+              onPressed: () {},
+              name: "Terms and Condition",
+            ),
           ],
         ),
       ),

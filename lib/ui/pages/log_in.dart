@@ -6,14 +6,14 @@ import 'package:new_flutter_app/ui/widgets/custom_button.dart';
 import 'package:new_flutter_app/ui/widgets/custom_text_field.dart';
 import 'package:new_flutter_app/ui/widgets/tacbutton.dart';
 
-class SignUp extends StatelessWidget {
-  SignUp({super.key});
+import '../../cubit/page_cubit.dart';
 
-  final TextEditingController nameController = TextEditingController(text: '');
+class SignIn extends StatelessWidget {
+  SignIn({super.key});
+
   final TextEditingController emailController = TextEditingController(text: '');
   final TextEditingController passwordController =
       TextEditingController(text: '');
-  final TextEditingController hobbyController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class SignUp extends StatelessWidget {
       return Container(
         margin: const EdgeInsets.only(top: 30),
         child: Text(
-          "Join us and get\nyour next journey",
+          "Sign in to start\nyour journey",
           style: blackTextStyle.copyWith(
               fontSize: defaultMargin, fontWeight: semibold),
         ),
@@ -36,9 +36,12 @@ class SignUp extends StatelessWidget {
             if (state is AuthSuccess) {
               Navigator.pushNamedAndRemoveUntil(
                 context,
-                '/bonus',
+                '/main-page',
                 (route) => false,
               );
+              //NOTE: set ke main-page karena last state dari pagecubit adalah settings page
+              context.read<PageCubit>().setPage(0);
+              //
             } else if (state is AuthFailed) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(state.error),
@@ -55,13 +58,12 @@ class SignUp extends StatelessWidget {
 
             return CustomButton(
                 onPressed: () {
-                  context.read<AuthCubit>().signUp(
-                      email: emailController.text,
-                      password: passwordController.text,
-                      name: nameController.text,
-                      hobby: hobbyController.text);
+                  context.read<AuthCubit>().signIn(
+                        email: emailController.text,
+                        password: passwordController.text,
+                      );
                 },
-                title: "Get Started");
+                title: "Sign In");
           },
         );
       }
@@ -75,17 +77,12 @@ class SignUp extends StatelessWidget {
         child: Column(
           children: [
             CustomTextField(
-              title: "Full name",
-              controller: nameController,
-            ),
-            CustomTextField(
                 title: "Email Address", controller: emailController),
             CustomTextField(
               title: "Password",
               isObscure: true,
               controller: passwordController,
             ),
-            CustomTextField(title: "Hobby", controller: hobbyController),
             button(),
           ],
         ),
@@ -102,11 +99,11 @@ class SignUp extends StatelessWidget {
                 title(),
                 inputSection(),
                 CustomTextButton(
-                    margin: EdgeInsets.only(top: 30, bottom: 73),
+                    margin: const EdgeInsets.only(top: 30, bottom: 73),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/sign-in');
+                      Navigator.pushNamed(context, '/sign-up');
                     },
-                    name: "Already have an account?"),
+                    name: "Don't have an account?"),
               ],
             ),
           ),

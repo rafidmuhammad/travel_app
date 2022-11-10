@@ -5,12 +5,11 @@ import 'package:new_flutter_app/services/user_service.dart';
 class AuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<UserModel> signUp({
-    required String email,
-    required String password,
-    required String name,
-    String hobby = '',
-  }) async {
+  Future<UserModel> signUp(
+      {required String email,
+      required String password,
+      required String name,
+      String hobby = ''}) async {
     try {
       //TODO : melkukan registrasi user baru
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
@@ -25,6 +24,28 @@ class AuthService {
 
       //TODO : passsing user ke firestore
       await UserService().setUser(user);
+      return user;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      _auth.signOut();
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<UserModel> signIn(
+      {required String email, required String password}) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      //NOTE : ngambil data user yang sudah ada
+      UserModel user =
+          await UserService().getUserById(userCredential.user!.uid);
       return user;
     } catch (e) {
       throw e;

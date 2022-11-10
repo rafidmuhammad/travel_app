@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_flutter_app/cubit/auth_cubit.dart';
 import 'package:new_flutter_app/cubit/page_cubit.dart';
-import 'package:new_flutter_app/observer.dart';
+//import 'package:new_flutter_app/observer.dart';
 import 'package:new_flutter_app/ui/pages/bonus_page.dart';
 import 'package:new_flutter_app/ui/pages/get_started.dart';
+import 'package:new_flutter_app/ui/pages/log_in.dart';
 import 'package:new_flutter_app/ui/pages/main_page.dart';
 import 'package:new_flutter_app/ui/pages/sign_up.dart';
 import 'package:new_flutter_app/ui/pages/splash_page.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           '/sign-up': (context) => SignUp(),
           '/bonus': (context) => const BonusPage(),
           '/main-page': (context) => const MainPage(),
+          '/sign-in': (context) => SignIn()
         },
       ),
     );
