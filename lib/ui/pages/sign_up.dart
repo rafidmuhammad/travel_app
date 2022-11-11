@@ -102,7 +102,7 @@ class SignUp extends StatelessWidget {
                 title(),
                 inputSection(),
                 CustomTextButton(
-                    margin: EdgeInsets.only(top: 30, bottom: 73),
+                    margin: const EdgeInsets.only(top: 30, bottom: 73),
                     onPressed: () {
                       Navigator.pushNamed(context, '/sign-in');
                     },

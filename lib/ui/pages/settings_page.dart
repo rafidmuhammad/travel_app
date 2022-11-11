@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_flutter_app/cubit/auth_cubit.dart';
-import 'package:new_flutter_app/cubit/page_cubit.dart';
 import 'package:new_flutter_app/ui/widgets/custom_button.dart';
 
 class SettingsPage extends StatelessWidget {
