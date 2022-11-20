@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:equatable/equatable.dart';
 
 class DestinationModel extends Equatable {
@@ -25,8 +23,18 @@ class DestinationModel extends Equatable {
         imageUrl: json["imageUrl"],
         name: json["name"],
         price: json["price"],
-        rating: json["rating"]);
+        rating: json["rating"].toDouble());
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'city': city,
+        'name': name,
+        'imageUrl': imageUrl,
+        'rating': rating,
+        'price': price
+      };
+
   @override
   // TODO: implement props
   List<Object?> get props => [id, name, city, imageUrl, rating, price];

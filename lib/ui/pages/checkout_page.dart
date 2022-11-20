@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:new_flutter_app/cubit/auth_cubit.dart';
+import 'package:new_flutter_app/cubit/transaction_cubit.dart';
+import 'package:new_flutter_app/currency_formatter.dart';
+import 'package:new_flutter_app/model/transaction_model.dart';
 import 'package:new_flutter_app/shared/theme.dart';
 import 'package:new_flutter_app/ui/pages/success_checkout.dart';
 import 'package:new_flutter_app/ui/widgets/custom_button.dart';
@@ -6,7 +11,8 @@ import 'package:new_flutter_app/ui/widgets/detail_item.dart';
 import 'package:new_flutter_app/ui/widgets/tacbutton.dart';
 
 class CheckoutPage extends StatelessWidget {
-  const CheckoutPage({super.key});
+  final TransactionModel transaction;
+  const CheckoutPage(this.transaction, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +87,10 @@ class CheckoutPage extends StatelessWidget {
                   height: 70,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(defaultRadius),
-                      image: const DecorationImage(
+                      image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage("assets/image_dest_1.png"))),
+                          image:
+                              NetworkImage(transaction.destination.imageUrl))),
                 ),
                 const SizedBox(
                   width: 16,
@@ -93,14 +100,14 @@ class CheckoutPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Lake Ciliwung",
+                        transaction.destination.name,
                         style: blackTextStyle.copyWith(
                             fontWeight: medium,
                             fontSize: 18,
                             overflow: TextOverflow.ellipsis),
                       ),
                       Text(
-                        "Tangerang",
+                        transaction.destination.city,
                         style: greyTextStyle.copyWith(fontWeight: light),
                       )
                     ],
@@ -116,7 +123,7 @@ class CheckoutPage extends StatelessWidget {
                           color: yellowColor,
                         )),
                     Text(
-                      "4.8",
+                      transaction.destination.rating.toString(),
                       style: blackTextStyle.copyWith(fontWeight: medium),
                     )
                   ],
@@ -134,19 +141,31 @@ class CheckoutPage extends StatelessWidget {
 
             //NOTE : Booking Details Item
             BookingDetailsItem(
-                detail: "2 Person", name: "Traveler", valueColor: textcolor),
+                detail: "${transaction.totalTraveler} person",
+                name: "Traveler",
+                valueColor: textcolor),
             BookingDetailsItem(
-                detail: "A3, B3", name: "Seat", valueColor: textcolor),
+                detail: transaction.selectedSeat,
+                name: "Seat",
+                valueColor: textcolor),
             BookingDetailsItem(
-                detail: "YES", name: "Insurance", valueColor: greencolor),
+                detail: transaction.insurance ? "YES" : "NO",
+                name: "Insurance",
+                valueColor: transaction.insurance ? greencolor : redcolor),
             BookingDetailsItem(
-                detail: "NO", name: "Refundable", valueColor: redcolor),
+                detail: transaction.refundable ? "YES" : "NO",
+                name: "Refundable",
+                valueColor: transaction.refundable ? greencolor : redcolor),
             BookingDetailsItem(
-                detail: "45%", name: "VAT", valueColor: textcolor),
+                detail: "${(transaction.vat * 100).toStringAsFixed(0)}%",
+                name: "VAT",
+                valueColor: textcolor),
             BookingDetailsItem(
-                detail: "IDR 8.500.690", name: "Price", valueColor: textcolor),
+                detail: CurrencyFormat.convertToIdr(transaction.price, 0),
+                name: "Price",
+                valueColor: textcolor),
             BookingDetailsItem(
-                detail: "IDR 12.000.000",
+                detail: CurrencyFormat.convertToIdr(transaction.grandTotal, 0),
                 name: "Grand Total",
                 valueColor: textcolor),
           ],
@@ -203,22 +222,29 @@ class CheckoutPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "IDR 80.400.000",
-                      style: blackTextStyle.copyWith(
-                          fontWeight: medium, fontSize: 18),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "Current Balance",
-                      style: greyTextStyle.copyWith(fontWeight: light),
-                    )
-                  ],
+                BlocBuilder<AuthCubit, AuthState>(
+                  builder: (context, state) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          state is AuthSuccess
+                              ? CurrencyFormat.convertToIdr(
+                                  state.user.balance, 0)
+                              : "IDR 0",
+                          style: blackTextStyle.copyWith(
+                              fontWeight: medium, fontSize: 18),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Current Balance",
+                          style: greyTextStyle.copyWith(fontWeight: light),
+                        )
+                      ],
+                    );
+                  },
                 ),
               ],
             ),
@@ -228,16 +254,34 @@ class CheckoutPage extends StatelessWidget {
     }
 
     Widget paynowButton() {
-      return CustomButton(
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SuccessCheckout(),
-              ));
+      return BlocConsumer<TransactionCubit, TransactionState>(
+        listener: (context, state) {
+          // TODO: implement listener
+          if (state is TransactionSuccess) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/success', (route) => false);
+          } else if (state is TransactionFailed) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.error),
+                backgroundColor: redcolor,
+              ),
+            );
+          }
         },
-        title: "Pay Now",
-        margin: const EdgeInsets.symmetric(vertical: 30),
+        builder: (context, state) {
+          if (state is TransactionLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return CustomButton(
+            onPressed: () {
+              context.read<TransactionCubit>().createTransaction(transaction);
+            },
+            title: "Pay Now",
+            margin: const EdgeInsets.symmetric(vertical: 30),
+          );
+        },
       );
     }
 

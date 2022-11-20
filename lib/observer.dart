@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 
-class PageBlocObserver extends BlocObserver {
+class UniversalBlocObserver extends BlocObserver {
   /*
   @override
   void onEvent(Bloc bloc, Object? event) {
