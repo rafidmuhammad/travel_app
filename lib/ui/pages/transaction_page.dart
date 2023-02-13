@@ -29,7 +29,7 @@ class _TransactionPageState extends State<TransactionPage> {
           );
         } else if (state is TransactionSuccess) {
           if (state.transactions.isEmpty) {
-            return Center(
+            return const Center(
               child: Text("There is no transaction"),
             );
           } else {
@@ -48,7 +48,7 @@ class _TransactionPageState extends State<TransactionPage> {
           }
         }
 
-        return Center(
+        return const Center(
           child: SizedBox(),
         );
       },
